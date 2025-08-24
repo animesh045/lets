@@ -35,3 +35,4 @@ A minimal, no-build Node.js app for workshop registration. Students can register
 ### Notes
 - This app is intentionally simple (no users/emails). For production, add real auth (e.g., NextAuth/Auth0), validation, and rate limiting.
 # Sunshine-Workshop
+# Sunshine-Workshop
