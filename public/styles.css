@@ -207,4 +207,27 @@ th { background: #fafafa; font-weight: 600; }
 
   th, td { padding: 8px; }
   main .card, .alert { margin: 12px auto; }
+
+/* Full-width hero section */
+.hero-full {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.hero-full-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  max-height: 400px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+  .hero-full-img {
+    max-height: 200px;
+    border-radius: 0; /* flush edges on phone */
+  }
+
 }
