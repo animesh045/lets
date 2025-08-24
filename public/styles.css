@@ -1,26 +1,28 @@
 /* Reset / base */
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   margin: 0;
-  background: #fafafa;
+  background: linear-gradient(135deg, #fdfbfb, #ebedee);
   color: #1e1e2d;
+  line-height: 1.6;
 }
-a { color: inherit; }
+a { color: inherit; text-decoration: none; }
 
-/* Layout */
+/* Container */
 .container {
   max-width: 1024px;
   margin: 0 auto;
   padding: 0 16px;
 }
-main { padding: 24px 0; }
-.mt { margin-top: 16px; }
+main { padding: 32px 0; }
+.mt { margin-top: 20px; }
 
-/* Header (clean + compact) */
+/* Header */
 .header {
   position: sticky;
   top: 0;
-  background: #fff;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid #eee;
   z-index: 10;
 }
@@ -28,93 +30,110 @@ main { padding: 24px 0; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 0;
+  padding: 14px 0;
 }
 .logo {
   display: flex;
   align-items: center;
   gap: 10px;
-  text-decoration: none;
-  color: #1e1e2d;
   font-weight: 800;
-  letter-spacing: .2px;
+  font-size: 1.25rem;
+  letter-spacing: .3px;
 }
-.logo-img {
-  height: 36px;
-  width: auto;
-  display: block;
-}
+.logo-img { height: 36px; }
+
+/* Nav */
 .nav a {
-  margin-left: 16px;
-  color: #303044;
-  text-decoration: none;
+  margin-left: 20px;
   font-weight: 600;
-  opacity: .85;
+  opacity: 0.8;
+  transition: opacity .2s ease;
 }
 .nav a:hover { opacity: 1; }
 
-/* Hero section */
-.hero {
-  padding: 24px 0;
-  background: linear-gradient(180deg, #fffbe6 0%, transparent 100%);
+/* Hero banner */
+.hero-full {
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
-.hero .banner {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 18px;
-  border: 1px solid #eee;
-  border-radius: 12px;
-  background: #fff;
-}
-.hero-img {
+.hero-full-img {
   width: 100%;
   height: auto;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+  max-height: 420px;
   object-fit: cover;
+  display: block;
+  border-bottom: 3px solid #2979ff;
 }
 
-/* Cards & forms */
+/* Card (glassmorphism style) */
 .card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 18px;
-  box-shadow: 0 4px 12px rgba(0,0,0,.05);
-  border: 1px solid #eee;
+  background: rgba(255,255,255,0.9);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.08);
+  border: 1px solid rgba(255,255,255,0.6);
+  backdrop-filter: blur(12px);
+  animation: fadeUp 0.6s ease;
 }
 .card.gradient {
-  background: linear-gradient(180deg, #ffffff, #f8fbff);
+  background: linear-gradient(180deg, #ffffffcc, #f8fbffcc);
   border: 1px solid #e9eefc;
 }
-label { display: block; margin-bottom: 6px; font-weight: 600; }
+
+/* Typography */
+h1 { margin: 0 0 12px; font-size: 1.75rem; }
+.muted { color: #555; font-size: 0.95rem; }
+
+/* Form */
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
 input {
   width: 100%;
-  padding: 10px;
+  padding: 12px 14px;
   border: 1px solid #d6d6e4;
-  border-radius: 8px;
-  margin-bottom: 12px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  font-size: 1rem;
+  transition: border-color .2s;
 }
+input:focus {
+  outline: none;
+  border-color: #2979ff;
+  box-shadow: 0 0 0 3px rgba(41,121,255,0.2);
+}
+
+/* Buttons */
 button, .button {
-  background: #2979ff;
+  background: linear-gradient(135deg, #2979ff, #5a95ff);
   color: #fff;
   border: none;
-  padding: 10px 14px;
-  border-radius: 8px;
+  padding: 12px 18px;
+  border-radius: 10px;
   cursor: pointer;
   font-weight: 600;
+  font-size: 1rem;
+  transition: transform .15s ease, opacity .2s;
+}
+button:hover, .button:hover {
+  transform: translateY(-2px);
+  opacity: 0.95;
 }
 button.secondary {
   background: #eee;
   color: #333;
 }
-button:hover, .button:hover { opacity: 0.9; }
 
 /* Alerts */
 .alert {
-  padding: 10px 14px;
-  border-radius: 8px;
-  margin-bottom: 12px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  margin-bottom: 14px;
+  font-weight: 600;
+  animation: fadeUp 0.5s ease;
 }
 .alert.success {
   background: #e7f9ed;
@@ -127,107 +146,44 @@ button:hover, .button:hover { opacity: 0.9; }
   color: #b91c1c;
 }
 
-/* Badges & helpers */
+/* Tag + badge */
 .tag {
   display: inline-block;
-  padding: 4px 8px;
+  padding: 4px 10px;
   border-radius: 999px;
   background: #fff4cc;
   border: 1px solid #ffe4a3;
   color: #6e4c00;
   font-size: .85rem;
+  font-weight: 600;
 }
 .count-badge {
   display: inline-flex;
-  gap: 6px;
+  gap: 8px;
   align-items: center;
-  padding: 6px 10px;
+  padding: 8px 12px;
   background: #eef3ff;
   border: 1px solid #dbe5ff;
-  border-radius: 10px;
+  border-radius: 12px;
   font-size: .9rem;
-}
-.select {
-  padding: 10px;
-  border: 1px solid #d6d6e4;
-  border-radius: 8px;
-  background: #fff;
+  font-weight: 600;
+  margin: 10px 0;
 }
 
-/* Tables */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 12px;
+/* Animation */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-th, td {
-  padding: 10px;
-  border-bottom: 1px solid #eee;
-  text-align: left;
-}
-th { background: #fafafa; font-weight: 600; }
 
-/* Closed text */
-.closed { color: #b91c1c; font-weight: 600; }
-
-/* Responsive tweaks (phones) */
+/* Responsive */
 @media (max-width: 640px) {
   .header-inner {
     flex-direction: column;
     align-items: flex-start;
-    padding: 10px 0;
+    gap: 8px;
   }
-
-  .logo-img {
-    height: 28px;  /* smaller logo for phones */
-  }
-
-  .nav {
-    margin-top: 8px;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .nav a {
-    margin-left: 0;
-    font-size: 0.9rem;
-  }
-
-  .hero {
-    padding: 16px 0;
-  }
-
-  .hero-img {
-    width: 100%;
-    max-height: 200px;    /* limit height on phone */
-    object-fit: cover;    /* crop nicely */
-    border-radius: 8px;
-  }
-
-  th, td { padding: 8px; }
-  main .card, .alert { margin: 12px auto; }
-
-/* Full-width hero section */
-.hero-full {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.hero-full-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-  max-height: 400px;
-}
-
-/* Mobile adjustments */
-@media (max-width: 640px) {
-  .hero-full-img {
-    max-height: 200px;
-    border-radius: 0; /* flush edges on phone */
-  }
-
+  .logo-img { height: 28px; }
+  .nav { display: flex; flex-wrap: wrap; gap: 12px; }
+  .hero-full-img { max-height: 220px; }
 }
