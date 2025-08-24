@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sunshine Workshop – You're In!</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <%- include('partials/header') %>
+  <main class="container">
+    <h1>✅ Registration Successful</h1>
+    <div class="card gradient">
+      <p>Thank you, <strong><%= student.name %></strong>!</p>
+      <p>Your assigned turn number for <span class="tag">Game <%= student.game %></span> is:</p>
+      <h2 style="font-size:2.2em; margin-top:10px;">#<%= student.turnNumber %></h2>
+      <p class="muted">Registered at: <%= new Date(student.createdAt).toLocaleString() %></p>
+<p>For any Query Contact:</p>
+<a href="www.instagram.com/sunshine.dcrust" target="_blank">Instagram | <a href="https://api.whatsapp.com/send?phone=918053047764"> Nishant Gupta</a >| <a href="https://api.whatsapp.com/send?phone=918368825928"> Animesh Lodhi</a></a> 
+<a href="
+
+    
+    </div>
+
+    <div class="mt">
+      <div class="card">
+        <h3>Watch this short reel while you wait</h3>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/Cyu1a4WRyJg/?utm_source=ig_web_copy_link&igsh=a3lkcGx3NjAxd2Zp" data-instgrm-version="14" style="width:100%;max-width:540px;margin:0 auto;">
+          <a href="https://www.instagram.com/reel/Cyu1a4WRyJg/?utm_source=ig_web_copy_link&igsh=a3lkcGx3NjAxd2Zp">View on Instagram</a>
+        </blockquote>
+        <script async src="//www.instagram.com/embed.js"></script>
+        <p class="muted" style="text-align:center;margin-top:8px;">If the video doesn't load, <a target="_blank" href="https://www.instagram.com/reel/Cyu1a4WRyJg/?utm_source=ig_web_copy_link&igsh=a3lkcGx3NjAxd2Zp">open the reel</a>.</p>
+      </div>
+    </div>
+
+    <p class="mt"><a href="/">← Back to Registration Page</a></p>
+  </main>
+</body>
+</html>

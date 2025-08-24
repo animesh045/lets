@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sunshine Workshop – Admin</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <%- include('partials/header') %>
+  <main class="container">
+    <h1>Admin Dashboard</h1>
+
+    <div class="table-actions mt">
+      <form action="/admin/logout" method="POST" style="display:inline-block;">
+        <button type="submit" class="secondary">Logout</button>
+      </form>
+
+      <form action="/admin/toggle" method="POST">
+        <button type="submit"><%= closed ? 'Open registrations' : 'Close registrations' %></button>
+      </form>
+
+      <form action="/admin/set-game" method="POST">
+        <select name="game" class="select">
+          <% for (let g=1; g<=5; g++) { %>
+            <option value="<%= g %>" <%= g===activeGame ? 'selected' : '' %>>Game <%= g %></option>
+          <% } %>
+        </select>
+        <button type="submit">Set Active Game</button>
+      </form>
+
+      <a class="button" href="/admin/export">Export CSV</a>
+    </div>
+
+    <div class="card mt gradient">
+      <div class="count-badge">Active Game: <strong>Game <%= activeGame %></strong></div>
+      <table class="mt">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Game</th>
+            <th>Turn</th>
+            <th>Registered At</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% students.sort((a,b)=> new Date(a.createdAt)-new Date(b.createdAt)).forEach((s, i) => { %>
+            <tr>
+              <td><%= i + 1 %></td>
+              <td><%= s.name %></td>
+              <td>Game <%= s.game || '-' %></td>
+              <td><%= s.turnNumber === null ? '-' : s.turnNumber %></td>
+              <td><%= new Date(s.createdAt).toLocaleString() %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+      <% if (students.length === 0) { %>
+        <p class="muted">No students registered yet.</p>
+      <% } %>
+    </div>
+
+    <p class="muted mt"><a href="/">← Back to Registration</a></p>
+  </main>
+</body>
+</html>

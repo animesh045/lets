@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sunshine Workshop – Registration</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <!-- FULL-WIDTH BANNER directly under the header -->
+  <section class="hero-full">
+    <!-- put your wide image at public/banner.jpg -->
+    <img src="/banner.png" alt="" class="hero-full-img" />
+  </section>
+
+  <main class="container">
+    <% if (success) { %>
+      <div class="alert success"><%= success %></div>
+    <% } %>
+    <% if (error) { %>
+      <div class="alert error"><%= error %></div>
+    <% } %>
+
+    <% if (closed) { %>
+      <div class="card gradient">
+        <h1>Registrations are closed</h1>
+        <p class="muted">Please check back later when the next game opens.</p>
+      </div>
+    <% } else { %>
+      <div class="banner card gradient">
+        <h1>Register for <span class="tag">Game <%= activeGame %></span></h1>
+        <p class="muted">Welcome to Sunshine Workshop! Enter your name below to get your turn number for the currently open game.</p>
+      </div>
+
+      <form action="/register" method="POST" class="card gradient mt">
+        <label for="name">Your full name</label>
+        <input id="name" name="name" type="text" placeholder="e.g., Priya Sharma" required />
+        <label for="number">Your Phone Number</label>
+        <input id="phone" name= "phone" type="tel" placeholder="e.g., 9999999999" inputmode="numeric" pattern="[0-9]{10}" required/>
+        <div class="count-badge">Current Game: <strong>Game <%= activeGame %></strong></div>
+        <button type="submit">Register</button>
+      </form>
+    <% } %>
+
+    <p class="muted mt"><a href="/admin">Admin</a></p>
+  </main>
+</body>
+</html>
